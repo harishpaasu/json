@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body><script>
+    var xhr = new XMLHttpRequest();
+
+    xhr.open("get", "https://restcountries.com/v3.1/all")
+xhr.send();
+xhr.onload = function () {
+    if(xhr.status === 200) {
+    let countryDetails=JSON.parse(xhr.responseText);
+    console.log(countryDetails);
+    countryDetails.forEach( function(country){
+     console.log("flag",country.flags[0],
+     "countryname",country.name,
+     "region",country.region,
+     "subregion",country.sunregion,
+     "population",country.population)   
+    });
+    
+}
+else{
+    console.error("failed to fetch data", xhr.status);
+}
+}
+</script>
+    
+</body>
+</html>
